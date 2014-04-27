@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>WSG</title>
+    <link href="mainDesign.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+    /*
+        var db = require('model/db');
+            console.log(db);
+            alert('made it');
+        db.getAllItems(function (err, result) {
+        if (err) throw err;
+            console.log(result);
+        if(result.length > 0)
+            document.getElementById("output").innerHTML=result;
+        else
+            document.getElementById("output").innerHTML='Nothing';
+    });
+       */     
+            $('#user-submit').click(function () {
+                var payload = {
+                    itemtype: $('#item-type').val(),
+                };
+
+		console.log(payload);
+
+                $.ajax({
+                    url: "/store",
+                    type: "POST",
+                    contentType: "application/json",
+                    processData: false,
+                    data: JSON.stringify(payload),
+                    complete: function (data) {
+                        $('#output').html(data.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body style=background-color:#E6E6E6;>
+    <div id=container style=width:80%;margin-left:10%;background-color:#E6E6E6;>
+
+        <div id="header" class=header>
+            <h1 style=color:#FFFFFF;>Wilderness Survival Game</h1>
+        </div>
+
+        <div id="Links" class=menuBar>
+            <p>
+                <a id="home" href="/">Home</a>  |
+                <a id="store">Store</a> |
+                <a id="account" href="/login">Account</a> |
+                <a id="about" href="/about">About</a>
+            </p>
+        </div>
+
+        <div id="content" class=mainContent>
+            <form method="GET">
+                <h3>Select Items To Buy</h3>
+                <p>Select Type:
+                    <select id="item-type" name="item-type">
+                        <option value="2">All</option>
+                        <option value="0">Food</option>
+                        <option value="1">Weapons</option>
+                    </select>
+                    </p>
+            </form>
+            <input id="user-submit" type="submit">
+            <p id="output"></p>
+        </div>
+
+        <div id="footer" class=footer>
+            <p style=text-align:center;color:#FFFFFF;>Created by Matthew Johnson</p>
+        </div>
+    </div>
+</body>
+
+</html>

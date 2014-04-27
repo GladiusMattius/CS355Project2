@@ -1,0 +1,56 @@
+<% include header %>
+
+    <div id="Links" class=menuBar>
+        <p href="/">Home |
+            <a id="store">Store</a>|
+            <a id="account" href="/login">Account</a>|
+            <a id="about" href="/about">About</a>
+        </p>
+    </div>
+
+    <div id="content" class=mainContent>
+        <form method="GET">
+            <p>Select Type:
+                <select id="item-type" name="item-type">
+                    <option value="2">All</option>
+                    <option value="0">Food</option>
+                    <option value="1">Weapons</option>
+                </select>
+            </p>
+        </form>
+        <input id="user-submit" type="submit">
+        <p id="output"></p>
+    </div>
+
+
+    <% if(rs.length>0) { %>
+        <table border="1px" solid>
+            <tr>
+                <th>Email</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Cart</th>
+            </tr>
+            <% for (var i=0;i < rs.length; i++) { %>
+                <tr>
+                    <td>
+                        <a href="/itemdetails/?Name=<% rs[i].Name %>">
+                            <%=rs[i].Name %>
+                        </a>
+                    </td>
+                    <td>
+                        <% rs[i].Description %>
+                    </td>
+                    <td>
+                        <% rs[i].Price %>
+                    </td>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                </tr>
+                <% } %>
+        </table>
+        <% } else { %>
+            No Items.
+            <% } %>
+                <% include footer %>
