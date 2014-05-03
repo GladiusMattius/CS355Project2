@@ -61,20 +61,15 @@ exports.getAllItems = function (callback){
  var query = 'select * from Item';
     connection.query(query, function (err, result){
        if(err) throw err;
-        
-        if(result.length > 0){
             
              var responseHTML = '<table border:1px solid #5c743d; style="margin: 0px auto;background-color:#FFFFFF;padding: 5px;" id="itemTable"><tr><th>Name</th><th>Description</th><th>Price</th><th>Cart</th></tr>';
                     for (var i = 0; result.length > i; i++) {
-                        responseHTML += '<tr><td><a href="/itemdetails/?Name=' + result[i].Name + '">' + result[i].Name + '<a></td>' +
+                        responseHTML += '<tr><td id="itemName' + i + '" ><a href="/itemdetails/?Name=' + result[i].Name + '" >' + result[i].Name + '<a></td>' +
                             '<td>' + result[i].Description + '</td>' +
                             '<td>' + result[i].Price + '</td>' + '<td><input type="checkbox" id="box' + i + '" ></td>';
                     }
                     responseHTML += '</table>';
-                   // responseHTML += '<input type="submit" id="checkout" value="Checkout" >';
-            
          callback(false, responseHTML);   
-        }
         
     });
 }
