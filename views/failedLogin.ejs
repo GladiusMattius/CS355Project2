@@ -1,0 +1,25 @@
+<% include header %>
+       <div id="Links" class=menuBar>
+            <p>
+                <a id="home" href="/home">Home</a>  |
+                <a id="store" href="/store">Store</a>  |
+                <a id="account">Account</a>  |
+                <a id="about" href="/about">About</a>
+            </p>
+        </div>
+
+        <div id="content" class=mainContent>
+                         <p id="output"></p>
+            <form method="POST">
+                <p>Email</p>
+                <input id="user-email" type="email" name="Email">
+                <p>Password</p>
+                <input id="user-password" type="password" name="Password">
+                <p><input id="btn-submit" type="submit"></p>
+            </form>
+            
+            <h3 style="color:red;">Invalid Email or Password</h3>
+
+            <a href="../createAccount/">Don't have an account? Click here to make one.</a>
+        </div>
+<% include footer %>

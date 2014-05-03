@@ -1,4 +1,36 @@
 <% include header %>
 <% include links %>
+<h3>Edit Account Details</h3>
+                <form method="POST" action="<%= action %>" style="margin:0px auto; width:300px">
+                    <table>
+                        <tr>
+                            <td>First Name:</td>
+                            <td>
+                                <input type="text" id="fname" name="FirstName">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Last Name:</td>
+                            <td>
+                                <input type="text" id="lname" name="LastName">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td>
+                                <input type="email" id="email" name="Email">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Password:</td>
+                            <td>
+                                <input type="password" id="password" name="Password">
+                            </td>
+                        </tr>
+                    </table>
+                    <input type="submit">
+                </form>
+            </div>
 
+            <p id="output"></p>
 <%include footer %>

@@ -6,26 +6,15 @@
     <link href="mainDesign.css" rel="stylesheet" type="text/css">
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-    /*
-        var db = require('model/db');
-            console.log(db);
-            alert('made it');
-        db.getAllItems(function (err, result) {
-        if (err) throw err;
-            console.log(result);
-        if(result.length > 0)
-            document.getElementById("output").innerHTML=result;
-        else
-            document.getElementById("output").innerHTML='Nothing';
-    });
-       */     
+        $(document).ready(function () { 
+            
+            document.getElementById('user-checkout').style.visibility = 'hidden';
+            
+            // Load items from database into table
             $('#user-submit').click(function () {
                 var payload = {
                     itemtype: $('#item-type').val(),
                 };
-
-		console.log(payload);
 
                 $.ajax({
                     url: "/store",
@@ -37,6 +26,31 @@
                         $('#output').html(data.responseText);
                     }
                 });
+                
+                document.getElementById('user-checkout').style.visibility = 'visible';
+            });
+            $('#user-checkout').click(function(){
+                var table = document.getElementById("itemTable");
+                var itemsToPurchase = [];
+                for ( var i = 1; row = table.rows[i]; i++ ) {
+                    if(document.getElementById('box' + (i - 1)).checked){
+                        itemsToPurchase.push(document.getElementById('itemName' + (i - 1)).innerText);
+                    }
+                }
+                //alert(JSON.stringify(itemsToPurchase));
+                
+                $.ajax({
+                    url: "/checkout",
+                    type: "POST",
+                    contentType: "application/json",
+                    processData: false,
+                    data: JSON.stringify(itemsToPurchase),
+                    send: JSON.stringify(itemsToPurchase)
+                   // complete: function (data) {
+                       // $('#output').html(data.responseText);
+                   // }
+                });
+                
             });
         });
     </script>
@@ -71,6 +85,9 @@
             </form>
             <input id="user-submit" type="submit">
             <p id="output"></p>
+
+            <input type="submit" id="user-checkout" value="Checkout" >
+
         </div>
 
         <div id="footer" class=footer>

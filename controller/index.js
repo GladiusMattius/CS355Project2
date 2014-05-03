@@ -23,12 +23,22 @@ router.get('/login', function (req, res) {
     res.render('login', { action: '/login/home'});
 });
 
+router.get('/failedLogin', function (req, res) {
+    res.render('failedLogin', { action: '/login/home'});
+});
+
 router.get('/createAccount', function (req, res) {
     res.render('createAccount', { action: '/createAccount/home' });
 }); 
 
 router.get('/store', function (req, res) {
     res.sendfile('store.html');
+});
+
+router.post('/checkout', function (req, res) {    
+    console.log(req.body);
+    console.log('made it');
+    res.render('checkout', req.body);
 });
 
 router.post('/store', function (req, res) {

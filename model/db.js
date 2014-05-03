@@ -21,7 +21,6 @@ exports.getItem = function (Name,callback) {
 }
 
 exports.getAccount = function (Email,Password, callback) {
-    //var query = 'SELECT * FROM Account WHERE Email ="' + Email + '"';
         var query ='SELECT * FROM Account WHERE Email ="' + Email + '" AND Password="' + Password + '"';
     connection.query(query, function (err, result) {
         if (err) throw err;
@@ -55,8 +54,7 @@ exports.createAccount = function (Email, FirstName, LastName, Password, callback
             
             callback(false, result);
         }
-    );
-    
+    );   
 }
 
 exports.getAllItems = function (callback){
@@ -66,14 +64,14 @@ exports.getAllItems = function (callback){
         
         if(result.length > 0){
             
-             var responseHTML = '<table border:1px solid #5c743d; style="margin: 0px auto;background-color:#FFFFFF;padding: 5px;"><tr><th>Name</th><th>Description</th><th>Price</th><th>Cart</th></tr>';
+             var responseHTML = '<table border:1px solid #5c743d; style="margin: 0px auto;background-color:#FFFFFF;padding: 5px;" id="itemTable"><tr><th>Name</th><th>Description</th><th>Price</th><th>Cart</th></tr>';
                     for (var i = 0; result.length > i; i++) {
                         responseHTML += '<tr><td><a href="/itemdetails/?Name=' + result[i].Name + '">' + result[i].Name + '<a></td>' +
                             '<td>' + result[i].Description + '</td>' +
                             '<td>' + result[i].Price + '</td>' + '<td><input type="checkbox" id="box' + i + '" ></td>';
                     }
-                    responseHTML += '</table><br>';
-                    responseHTML += '<input type="submit" id="checkout" value="Checkout" >';
+                    responseHTML += '</table>';
+                   // responseHTML += '<input type="submit" id="checkout" value="Checkout" >';
             
          callback(false, responseHTML);   
         }
@@ -86,15 +84,13 @@ exports.getItemsByType = function (type, callback){
      connection.query(query, function (err, result){
        if(err) throw err;
             
-             var responseHTML = '<table border:1px solid #5c743d; style="margin: 0px auto;background-color:#FFFFFF;padding: 5px;" ><tr><th>Name</th><th>Description</th><th>Price</th><th>Cart</th></tr>';
+             var responseHTML = '<table border:1px solid #5c743d; style="margin: 0px auto;background-color:#FFFFFF;padding: 5px;" id="itemTable"><tr><th>Name</th><th>Description</th><th>Price</th><th>Cart</th></tr>';
                     for (var i = 0; result.length > i; i++) {
-                        responseHTML += '<tr><td><a href="/itemdetails/?Name=' + result[i].Name + '">' + result[i].Name + '<a></td>' +
+                        responseHTML += '<tr><td id="itemName' + i + '" ><a href="/itemdetails/?Name=' + result[i].Name + '" >' + result[i].Name + '<a></td>' +
                             '<td>' + result[i].Description + '</td>' +
                             '<td>' + result[i].Price + '</td>' + '<td><input type="checkbox" id="box' + i + '" ></td>';
                     }
-                    responseHTML += '</table><br>';
-                    responseHTML += '<input type="submit" id="checkout" value="Checkout" >';
-            
+                    responseHTML += '</table>';
          callback(false, responseHTML);   
         
     });

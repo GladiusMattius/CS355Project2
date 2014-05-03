@@ -10,11 +10,12 @@ router.post('/home', function (req, res) {
             var values = {
                 Email: result[0].Email,
                 FirstName: result[0].FirstName,
-                LastName: result[0].LastName
+                LastName: result[0].LastName,
+                ID: result[0].AccountID
             };
             res.render('accountHome', values);
         } else {
-            res.send('invalid Email or Password');
+            res.render('failedLogin');
         }
     });
 
