@@ -83,12 +83,6 @@ router.post('/editAccount', function (req, res){
 //**********************************************************************************
 router.post('/updateAccount', function(req, res){
 
- /*   var values = {
-        Email: req.body.Email,
-        FirstName: req.body.FirstName,
-        LastName: req.body.LastName,
-        ID: req.body.accountID
-    }; */
 
     db.updateAccountByID(req.body.accountID, req.body.Email, req.body.FirstName, req.body.LastName, req.body.Password, function(err, result){
        if(err) throw err;
@@ -107,7 +101,6 @@ router.post('/updateAccount', function(req, res){
                     res.render('accountHome', values);
                 });
         
-        //res.render('accountHome', values);
     });
     
 });
