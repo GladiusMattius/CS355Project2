@@ -1,6 +1,5 @@
 var express = require('express'), // web framework
     ejs = require('ejs'), // templates
-  //  mysql = require('mysql'), // database
     connect = require('connect'); // GET and POST request parser
 
 var routes = require('./controller/index');

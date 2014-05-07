@@ -1,36 +1,41 @@
+<!-- Matthew Johnson -->
+<!-- CS 355 Project 2-->
+
 <% include header %>
 <% include links %>
-<h3>Edit Account Details</h3>
-                <form method="POST" action="<%= action %>" style="margin:0px auto; width:300px">
+        <div id="content" class=mainContent>
+            <h3>Edit Account Details</h3>
+            <div id="forms" >
+                <form method="POST" action="/updateAccount" style="margin:0px auto; width:300px">
                     <table>
                         <tr>
-                            <td>First Name:</td>
+                            <td>Edit First Name:</td>
                             <td>
                                 <input type="text" id="fname" name="FirstName">
                             </td>
                         </tr>
                         <tr>
-                            <td>Last Name:</td>
+                            <td>Edit Last Name:</td>
                             <td>
                                 <input type="text" id="lname" name="LastName">
                             </td>
                         </tr>
                         <tr>
-                            <td>Email:</td>
+                            <td>Edit Email:</td>
                             <td>
                                 <input type="email" id="email" name="Email">
                             </td>
                         </tr>
                         <tr>
-                            <td>Password:</td>
+                            <td>Edit Password:</td>
                             <td>
                                 <input type="password" id="password" name="Password">
                             </td>
                         </tr>
                     </table>
-                    <input type="submit">
+                    <p>Must enter all values didnt add error checking...</p>
+                    <input type="hidden" value="<%= ID %>" name="accountID" id="accountID">
+                    <input type="submit" value="update">
                 </form>
             </div>
-
-            <p id="output"></p>
 <%include footer %>

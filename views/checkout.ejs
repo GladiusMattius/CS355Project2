@@ -1,6 +1,21 @@
+<!-- Matthew Johnson -->
+<!-- CS 355 Project 2-->
+
 <% include header %>
 <% include links %>
-
-
-
+<div id="content" class=mainContent>
+    <h2>Your Cart</h2>
+<% if(items.length > 0){ %>
+<% var total = 0 %>
+<table border:1px solid #5c743d; style="margin: 0px auto;background-color:#FFFFFF;padding: 5px;" id="itemTable"><tr><th>Item Name</th><th>Price</th></tr>
+  <%  for (var i = 0; i < items.length; i++) { %>
+         <tr><td><%= items[i] %></td><td><%= prices[i] %></td></tr>
+         <% total += parseInt(prices[i]); %>
+<% } %>
+    <tr><td><b>Total</b></td><td><b><%= total %></b></td></tr>
+</table> 
+<% } else { %>
+<h2>No Items To Purchase</h2>    
+<% } %>
+    </div>
 <% include footer %>

@@ -1,6 +1,8 @@
+<!-- Matthew Johnson -->
+<!-- CS 355 Project 2-->
+
 <% include header %>
 <% include links %>
-
         <div id="content" class=mainContent>
             <p><b>First Name</b></p>
             <p><%= FirstName %></p>
@@ -8,6 +10,18 @@
             <p><%= LastName %></p>
             <p><b>Email</b></p>
             <p><%= Email %></p><br>
+            
+            <% if(items.length > 0){ %>
+                <h3>Account Items</h3>
+                <% for(var i = 0; i < items.length; i++){ %>
+                    <p><%= items[i].Name %></p>
+               <% } %> 
+            <% } %>
+            
+            <form method="POST" action="/editAccount">
+            <input type="hidden" name="accountID" id="accountID" value="<%= ID %>">
+            <input type="submit" value="Edit Account">
+            </form>
         </div>
 
 <% include footer %>

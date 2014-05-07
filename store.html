@@ -1,3 +1,6 @@
+<!-- Matthew Johnson -->
+<!-- CS 355 Project 2-->
+
 <!DOCTYPE html>
 <html>
 
@@ -32,25 +35,15 @@
             $('#user-checkout').click(function(){
                 var table = document.getElementById("itemTable");
                 var itemsToPurchase = [];
+                var itemPrices = [];
                 for ( var i = 1; row = table.rows[i]; i++ ) {
                     if(document.getElementById('box' + (i - 1)).checked){
                         itemsToPurchase.push(document.getElementById('itemName' + (i - 1)).innerText);
+                        itemPrices.push(document.getElementById('itemPrice' + (i - 1)).innerText);
                     }
                 }
-                //alert(JSON.stringify(itemsToPurchase));
-                
-                $.ajax({
-                    url: "/checkout",
-                    type: "POST",
-                    contentType: "application/json",
-                    processData: false,
-                    data: JSON.stringify(itemsToPurchase),
-                    send: JSON.stringify(itemsToPurchase)
-                   // complete: function (data) {
-                       // $('#output').html(data.responseText);
-                   // }
-                });
-                
+                document.getElementById('items').value = JSON.stringify(itemsToPurchase);
+                document.getElementById('prices').value = JSON.stringify(itemPrices);
             });
         });
     </script>
@@ -85,9 +78,11 @@
             </form>
             <input id="user-submit" type="submit">
             <p id="output"></p>
-
+            <form method="POST" action="/checkout">
+            <input type="hidden" id="items" name="items" >
+            <input type="hidden" id="prices" name="prices" >
             <input type="submit" id="user-checkout" value="Checkout" >
-
+            </form>
         </div>
 
         <div id="footer" class=footer>
